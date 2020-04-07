@@ -15,14 +15,16 @@ class _LoadingState extends State<Loading> {
 
   void getdata() async {
     //get data
+    Response response2 = await get('https://covidma.herokuapp.com/api');
     Response response = await get('https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json');
     Map data = jsonDecode(response.body);
+    List<dynamic> data2 = jsonDecode(response2.body);
     //test
-
     if(data!=null){
       Future.delayed(Duration(seconds: 2),(){
         Navigator.pushReplacementNamed(context, '/dashbord', arguments: {
           'data':data['features'],
+          'data2':data2[0],
         });
       });
     }else {

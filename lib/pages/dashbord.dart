@@ -58,25 +58,15 @@ class _dashbordState extends State<dashbord> with TickerProviderStateMixin {
     rippleController.forward();
   }
   int totaleCases=0;
-  int totaleDeath=0;
+  int nigatif=0;
+  String date="";
   @override
   Widget build(BuildContext context) {
-    int s=0;
-    int d=0;
     data = ModalRoute.of(context).settings.arguments;
-    for(int i=0;i<data['data'].length;i++) {
-      print(s);
-      if(data['data'][i]['attributes']['Cases']!=null)
-      s = s + int.parse(data['data'][i]['attributes']['Cases'].toString());
-    }
-    for(int i=0;i<data['data'].length;i++) {
-      print(s);
-      if(data['data'][i]['attributes']['Deaths']!=null)
-        d = d + int.parse(data['data'][i]['attributes']['Deaths'].toString());
-    }
     setState(() {
-      totaleCases=s;
-      totaleDeath=d;
+      totaleCases=data['data2']['confirmed'];
+      nigatif=data['data2']['negative'];
+      date=data['data2']['last_updated'].toString().substring(15,21);
     });
     return Scaffold(
       body: PageView(
@@ -120,6 +110,18 @@ class _dashbordState extends State<dashbord> with TickerProviderStateMixin {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(date.toString()+" GMT ", style: TextStyle(color: Colors.yellow[400], fontSize: 18, fontWeight: FontWeight.bold),),
+                        Text(" : آخر تحديث على الساعة", style: TextStyle(color: Colors.white, fontSize: 18),)
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
                     Text(totaleCases.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
                     Text("حالة مؤكدة", style: TextStyle(color: Colors.white, fontSize: 30),),
                   ],
@@ -127,11 +129,12 @@ class _dashbordState extends State<dashbord> with TickerProviderStateMixin {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text(totaleDeath.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
-                    Text("وفايات", style: TextStyle(color: Colors.white, fontSize: 30),),
+                    Text(nigatif.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
+                    Text("مستبعدة", style: TextStyle(color: Colors.white, fontSize: 30),),
                   ],
                 ),
-                SizedBox(height: 150,),
+
+                SizedBox(height: 80),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: AnimatedBuilder(

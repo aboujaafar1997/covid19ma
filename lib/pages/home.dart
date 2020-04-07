@@ -21,25 +21,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
-    int s=0;
-    int d=0;
-    int p=0;
-    int f=0;
-    for(int i=0;i<data['data'].length;i++) {
-      if(data['data'][i]['attributes']['Recoveries']!=null)
-        p = p + int.parse(data['data'][i]['attributes']['Recoveries'].toString());
-    }
-    for(int i=0;i<data['data'].length;i++) {
-      print(s);
-      if(data['data'][i]['attributes']['Cases']!=null)
-        s = s + int.parse(data['data'][i]['attributes']['Cases'].toString());
-    }
-    for(int i=0;i<data['data'].length;i++) {
-      print(s);
-      if(data['data'][i]['attributes']['Deaths']!=null)
-        d = d + int.parse(data['data'][i]['attributes']['Deaths'].toString());
-    }
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
@@ -65,21 +46,21 @@ class Home extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text(p.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
+                      Text(data['data2']['recovered'].toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
                       Text("شفاء", style: TextStyle(color: Colors.white, fontSize: 30),),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text(s.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
+                      Text(data['data2']['confirmed'].toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
                       Text("حالة مؤكدة", style: TextStyle(color: Colors.white, fontSize: 30),),
                     ],
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text(d.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
+                      Text(data['data2']['deaths'].toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
                       Text("وفايات", style: TextStyle(color: Colors.white, fontSize: 30),),
                     ],
                   ),
@@ -87,7 +68,8 @@ class Home extends StatelessWidget {
               ),
             ),
               Center(
-                child:Text("معطيات حسب الجهات", style: TextStyle(color: Colors.white, fontSize: 30),)
+
+                child:Text("معطيات المتوفرة لدينا حسب الجهات", style: TextStyle(color: Colors.white, fontSize: 23),)
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(28,0,20,0),
@@ -107,9 +89,15 @@ class Home extends StatelessWidget {
               SizedBox(height: 20,),
               SizedBox(height: 20,),
               SizedBox(height: 20,),
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("aboujaafar.othmane@gmail.com ", style: TextStyle(color: Colors.white, fontSize:12)),
+                ],
+              )
             ]),
           ),
+
         ],
       ),
     );
