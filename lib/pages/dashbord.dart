@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covid19ma/pages/home.dart';
 import 'package:page_transition/page_transition.dart';
@@ -60,12 +61,16 @@ class _dashbordState extends State<dashbord> with TickerProviderStateMixin {
   int totaleCases=0;
   int nigatif=0;
   String date="";
+  String newtotale="";
+  String newdeth="";
   @override
   Widget build(BuildContext context) {
     data = ModalRoute.of(context).settings.arguments;
     setState(() {
       totaleCases=data['data2']['confirmed'];
-      nigatif=data['data2']['negative'];
+      nigatif=data['data2']['excluded'];
+      newtotale=data['data2']['new_confirmed'].toString();
+      newdeth=data['data2']['new_deaths'].toString();
       date=data['data2']['last_updated'].toString().substring(15,21);
     });
     return Scaffold(
@@ -122,19 +127,37 @@ class _dashbordState extends State<dashbord> with TickerProviderStateMixin {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text(totaleCases.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
-                    Text("حالة مؤكدة", style: TextStyle(color: Colors.white, fontSize: 30),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(totaleCases.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
+                        Text(" (+"+newtotale+")", style: TextStyle(color: Colors.yellow[400], fontSize: 20, fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                  Text("حالة مؤكدة", style: TextStyle(color: Colors.white, fontSize: 30),),
                   ],
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Text(nigatif.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 40, fontWeight: FontWeight.bold),),
-                    Text("مستبعدة", style: TextStyle(color: Colors.white, fontSize: 30),),
+                    Text(nigatif.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 30, fontWeight: FontWeight.bold),),
+                    Text("مستبعدة", style: TextStyle(color: Colors.white, fontSize: 20),),
                   ],
                 ),
-
-                SizedBox(height: 80),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.end,
+                     children: [
+                       Text("     حالة وفاة اليوم", style: TextStyle(color: Colors.white, fontSize: 30),),
+                       SizedBox(width: 10,),
+                       Text("+"+newdeth.toString(), style: TextStyle(color: Colors.yellow[400], fontSize: 30, fontWeight: FontWeight.bold),),
+                     ],
+                   ),
+                    ],
+                ),
+                SizedBox(height: 10),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: AnimatedBuilder(

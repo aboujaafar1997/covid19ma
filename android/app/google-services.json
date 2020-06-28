@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "926739591002",
-    "firebase_url": "https://covid192-1bb66.firebaseio.com",
-    "project_id": "covid192-1bb66",
-    "storage_bucket": "covid192-1bb66.appspot.com"
+    "project_number": "995202768684",
+    "firebase_url": "https://covid19-78b55.firebaseio.com",
+    "project_id": "covid19-78b55",
+    "storage_bucket": "covid19-78b55.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:926739591002:android:c0348a10df25c4be314d63",
+        "mobilesdk_app_id": "1:995202768684:android:935fae760d85deac635689",
         "android_client_info": {
           "package_name": "com.othmane.covid19ma"
         }
       },
       "oauth_client": [
         {
-          "client_id": "926739591002-o1u3ajf0t1t8m4oed0p6l1tn64lol63l.apps.googleusercontent.com",
+          "client_id": "995202768684-n96a6ekfpqq8urbigavd3gpotp0togov.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDG_t7_PE-eEBv-FCkk0LyCcjG7DmP34Ig"
+          "current_key": "AIzaSyCE6wBrkscIW4abrLlvZ1K6KCvZZX6GLy0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "926739591002-o1u3ajf0t1t8m4oed0p6l1tn64lol63l.apps.googleusercontent.com",
+              "client_id": "995202768684-n96a6ekfpqq8urbigavd3gpotp0togov.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
